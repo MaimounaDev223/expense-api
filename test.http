@@ -1,7 +1,13 @@
-POST http://127.0.0.1:8000/api/categories
+###
+
+POST http://127.0.0.1:8000/api/expenses
 Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "Transport"
+  "user_id": 1,
+  "category_id": 1,
+  "amount": 3500,
+  "description": "Taxi",
+  "spent_at": "2026-10-24 09:30:00"
 }
