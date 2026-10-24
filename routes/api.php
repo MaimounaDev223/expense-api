@@ -1,5 +1,6 @@
 <?php
-use App\Models\Category;
+
+use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/categories', function () {
-    return Category::all();
-});
+Route::get('/categories', [CategoryController::class, 'index']);
