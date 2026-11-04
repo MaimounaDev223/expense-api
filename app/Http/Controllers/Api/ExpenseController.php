@@ -37,4 +37,25 @@ class ExpenseController extends Controller
 
     return response()->noContent();
 }
+ public function update(Request $request, Expense $expense)
+ {
+
+ if ($expense->user_id !== $request->user()->id) {
+    return response()->json(['message' => 'Non autorisé'], 403);
+
+ }
+
+ $data = $request->validate([
+    'category_id' => 'nullable|exists:categories,id',
+    'amount' => 'required|numeric|min:0.01',
+    'description' => 'nullable|string',
+    'spent_at' => 'required|date',
+ ]);
+
+ $expense->update($data);
+
+ return response()->json($expense->load('category'));
+ 
+ }
+
 }
